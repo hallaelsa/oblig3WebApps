@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -27,6 +28,10 @@ namespace s315579IndividuellOppgave
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddDbContext<DAL.DbService>(options => options.UseSqlServer(Configuration.GetConnectionString("DbService")));
+            services.AddScoped<DAL.FAQ>();
+            services.AddScoped<BLL.FAQ>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +67,14 @@ namespace s315579IndividuellOppgave
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+        }
+
+        private static void InitializeMigrations(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                DAL.DbInit.Initialize(serviceScope);
+            }
         }
     }
 }
