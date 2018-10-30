@@ -67,6 +67,8 @@ namespace s315579IndividuellOppgave
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+
+            InitializeMigrations(app);
         }
 
         private static void InitializeMigrations(IApplicationBuilder app)
