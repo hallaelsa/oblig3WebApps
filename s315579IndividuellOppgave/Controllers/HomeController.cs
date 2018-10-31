@@ -31,5 +31,11 @@ namespace s315579IndividuellOppgave.Controllers
         {
             return faq.GetFAQs();
         }
+
+        [HttpPost("[action]")]
+        public bool UpVotes(int id)
+        {
+            return true;
+        }
     }
 }

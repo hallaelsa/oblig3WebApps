@@ -1,7 +1,25 @@
 ﻿import React, { Component } from 'react';
-import { Panel } from 'react-bootstrap';
+import { Panel, Button } from 'react-bootstrap';
 
 export default class Content extends Component {
+
+    upVote(id) {
+        console.log(id);
+
+        fetch('api/Home/UpVote',
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(id)
+            });
+    }
+
+    downVote(id) {
+        console.log(id);
+    }
 
     render() {
         const group = this.props.group;
@@ -29,6 +47,15 @@ export default class Content extends Component {
                                         <Panel.Collapse>
                                             <Panel.Body>
                                                 {faq.answer}
+                                                <div className="votes-container">
+                                                    <Button bsStyle="link" onClick={() => this.upVote(faq.id)}>
+                                                        <span className="glyphicon glyphicon-thumbs-up vote" >{faq.upVotes}</span>
+                                                    </Button>
+
+                                                    <Button bsStyle="link" onClick={() => this.downVote(faq.id)}>
+                                                        <span className="glyphicon glyphicon-thumbs-down vote">{faq.downVotes}</span>
+                                                    </Button>
+                                                </div>
                                             </Panel.Body>
                                         </Panel.Collapse>
                                     </Panel>
