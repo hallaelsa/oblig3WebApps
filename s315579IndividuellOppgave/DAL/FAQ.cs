@@ -72,6 +72,7 @@ namespace s315579IndividuellOppgave.DAL
                 Answer = dbQA.Answer,
                 DownVotes = dbQA.DownVotes,
                 UpVotes = dbQA.UpVotes,
+                Email = dbQA.Email,
                 Category = ToCategoryModel(dbQA.Category)
             };
         }
