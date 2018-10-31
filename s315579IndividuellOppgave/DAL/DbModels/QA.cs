@@ -12,6 +12,7 @@ namespace s315579IndividuellOppgave.DAL.DbModels
         public string Answer { get; set; }
         public int UpVotes { get; set; }
         public int DownVotes { get; set; }
+        public string Email { get; set; }
         public virtual Category Category { get; set; }
     }
 }

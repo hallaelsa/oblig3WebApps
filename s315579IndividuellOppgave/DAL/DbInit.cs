@@ -70,6 +70,7 @@ namespace s315579IndividuellOppgave.DAL
                 Answer = "After you have purchased a movie you will find it under you 'My Orders' tab. There will be a download button next to the movie. Click it and the movie will be downloaded.",
                 UpVotes = 1,
                 DownVotes = 1,
+                Email = "test@gmail.com",
                 Category = downloads,
             };
             dbContext.Add(newQA);
@@ -80,6 +81,7 @@ namespace s315579IndividuellOppgave.DAL
                 Answer = "If you have problems downloading a movie please check that you are connected to the internet.",
                 UpVotes = 5,
                 DownVotes = 0,
+                Email = "test@gmail.com",
                 Category = downloads,
             };
             dbContext.Add(newQA);
@@ -90,6 +92,7 @@ namespace s315579IndividuellOppgave.DAL
                 Answer = "The movie should end up in your 'downloads' folder on your computer unless you specified something else. You can search for it in the explorer.",
                 UpVotes = 5,
                 DownVotes = 0,
+                Email = "test@gmail.com",
                 Category = downloads,
             };
             dbContext.Add(newQA);
@@ -101,6 +104,7 @@ namespace s315579IndividuellOppgave.DAL
                 Answer = "You can request a refund and will be able to buy the movie again. Please send the request to admin@admin.com",
                 UpVotes = 5,
                 DownVotes = 0,
+                Email = "test@gmail.com",
                 Category = refund,
             };
             dbContext.Add(newQA);
@@ -111,6 +115,7 @@ namespace s315579IndividuellOppgave.DAL
                 Answer = "You can request a refund by email to admin@admin.com. Please include a description of why you need a refund. Only orders with faulty movies may be refunded.",
                 UpVotes = 2,
                 DownVotes = 1,
+                Email = "test@gmail.com",
                 Category = refund,
             };
             dbContext.Add(newQA);
@@ -122,6 +127,7 @@ namespace s315579IndividuellOppgave.DAL
                 Answer = "We do our best at obtaining new movies as soon as they are released to the marked. If we do not have a movie you wish we had you can request it by sending an email to admin@admin.com.",
                 UpVotes = 8,
                 DownVotes = 0,
+                Email = "test@gmail.com",
                 Category = newMovies,
             };
             dbContext.Add(newQA);
@@ -132,6 +138,7 @@ namespace s315579IndividuellOppgave.DAL
                 Answer = "If we do not have a movie you wish we had you can request it by sending an email to admin@admin.com.",
                 UpVotes = 30,
                 DownVotes = 1,
+                Email = "test@gmail.com",
                 Category = newMovies,
             };
             dbContext.Add(newQA);
@@ -143,6 +150,7 @@ namespace s315579IndividuellOppgave.DAL
                 Answer = "At the moment we only accept Visa cards.",
                 UpVotes = 8,
                 DownVotes = 0,
+                Email = "test@gmail.com",
                 Category = payment,
             };
             dbContext.Add(newQA);
@@ -153,6 +161,7 @@ namespace s315579IndividuellOppgave.DAL
                 Answer = "Our movies are not sold if the user is too young according to the age restrictions of the movie. After creating an account only the movies available to your age group will be visible and possible to purchase.",
                 UpVotes = 2,
                 DownVotes = 11,
+                Email = "test@gmail.com",
                 Category = payment,
             };
             dbContext.Add(newQA);
@@ -163,6 +172,7 @@ namespace s315579IndividuellOppgave.DAL
                 Answer = "Our movies are not sold if the user is too young according to the age restrictions of the movie. After creating an account only the movies available to your age group will be visible and possible to purchase. Any movies added to cart before login that are not available to your age group will be removed.",
                 UpVotes = 7,
                 DownVotes = 20,
+                Email = "test@gmail.com",
                 Category = payment,
             };
             dbContext.Add(newQA);
@@ -173,6 +183,7 @@ namespace s315579IndividuellOppgave.DAL
                 Answer = "Please contact us at admin@admin.com and provide a document showing the transaction. We will fix the problem.",
                 UpVotes = 11,
                 DownVotes = 4,
+                Email = "test@gmail.com",
                 Category = payment,
             };
             dbContext.Add(newQA);
@@ -184,6 +195,7 @@ namespace s315579IndividuellOppgave.DAL
                 Answer = "Make a request to have you account deleted.",
                 UpVotes = 8,
                 DownVotes = 0,
+                Email = "test@gmail.com",
                 Category = deleteAccount,
             };
             dbContext.Add(newQA);
@@ -194,6 +206,7 @@ namespace s315579IndividuellOppgave.DAL
                 Answer = "Please conatc us and refer to the email address you used when creating your account. We will reactivate it for you.",
                 UpVotes = 8,
                 DownVotes = 0,
+                Email = "test@gmail.com",
                 Category = deleteAccount,
             };
             dbContext.Add(newQA);
@@ -204,6 +217,7 @@ namespace s315579IndividuellOppgave.DAL
                 Answer = "Your account might have been suspended due to violations of our terms of services.",
                 UpVotes = 8,
                 DownVotes = 0,
+                Email = "test@gmail.com",
                 Category = deleteAccount,
             };
             dbContext.Add(newQA);
@@ -215,6 +229,7 @@ namespace s315579IndividuellOppgave.DAL
                 Answer = "Our service is not available for children and thus all users must provide their age upon registration.",
                 UpVotes = 8,
                 DownVotes = 0,
+                Email = "test@gmail.com",
                 Category = privacy,
             };
             dbContext.Add(newQA);
@@ -225,6 +240,7 @@ namespace s315579IndividuellOppgave.DAL
                 Answer = "Personal information collected on this site is never shared with third party applications. Contact information is only used to provide comminication with the users and will not be used for commercial unless the user has agreed to this.",
                 UpVotes = 8,
                 DownVotes = 0,
+                Email = "test@gmail.com",
                 Category = privacy,
             };
             dbContext.Add(newQA);
@@ -236,6 +252,7 @@ namespace s315579IndividuellOppgave.DAL
                 Answer = "Please make sure you have created an account with our service. If you have created an account with us but cannot log in, please check if you are using the correct password.",
                 UpVotes = 8,
                 DownVotes = 0,
+                Email = "test@gmail.com",
                 Category = login,
             };
             dbContext.Add(newQA);
@@ -246,6 +263,7 @@ namespace s315579IndividuellOppgave.DAL
                 Answer = "Our service requires you to create a strong password. Please make sure you are using both capital and small letters as well as numbers when creating a password.",
                 UpVotes = 8,
                 DownVotes = 0,
+                Email = "test@gmail.com",
                 Category = login,
             };
             dbContext.Add(newQA);

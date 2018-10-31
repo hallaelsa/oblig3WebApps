@@ -12,6 +12,7 @@ namespace s315579IndividuellOppgave.Models
         public string Answer { get; set; }
         public int UpVotes { get; set; }
         public int DownVotes { get; set; }
+        public string Email { get; set; }
         public Category Category { get; set; }
     }
 }
