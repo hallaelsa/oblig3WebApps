@@ -12,14 +12,24 @@ export class Home extends Component {
         this.state = {
             showMenu: false,
             groupedCategories: [],
-            loading: true
+            faqs: [],
+            isLoading: true
         };
+
+        //fetch('api/SampleData/WeatherForecasts')
+        //    .then(response => response.json())
+        //    .then(data => {
+        //        this.setState({ forecasts: data, loading: false });
+        //    });
 
         fetch('api/Home/Categories')
             .then(response => response.json())
-            .then(data => {
-                this.setState({ groupedCategories: data, loading: false });
-                console.log(data);
+            .then(groups => {
+                fetch('api/Home/FAQs')
+                    .then(response => response.json())
+                    .then(faqs => {
+                        this.setState({ groupedCategories: groups, faqs: faqs, isLoading: false });
+                    });
             });
 
         this.toggleMenu = this.toggleMenu.bind(this);
@@ -27,14 +37,14 @@ export class Home extends Component {
     }
 
     render() {
-        var content = this.state.loading ? this.loading() : this.content();
+        var content = this.state.isLoading ? this.loading() : this.content();
 
         return (
             <div>
                 <Header
                     toggleMenu={this.toggleMenu} />
                 {content}
-                <Content />
+                
             </div>
         );
     }
@@ -47,7 +57,10 @@ export class Home extends Component {
 
     content() {
         return (
-            this.state.showMenu && <Menu catGroup={this.state.groupedCategories} navigateTo={this.navigateTo} />
+            <div>
+                this.state.showMenu && <Menu catGroup={this.state.groupedCategories} navigateTo={this.navigateTo} />
+                <Content faqs={this.state.faqs} />
+            </div>
         );
     }
 

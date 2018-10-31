@@ -25,5 +25,11 @@ namespace s315579IndividuellOppgave.Controllers
         {
             return faq.GetCategories();
         }
+
+        [HttpGet("[action]")]
+        public List<QA> FAQs()
+        {
+            return faq.GetFAQs();
+        }
     }
 }

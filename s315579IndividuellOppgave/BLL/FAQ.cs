@@ -30,6 +30,11 @@ namespace s315579IndividuellOppgave.BLL
             return groupedCategories;
         }
 
+        public List<QA> GetFAQs()
+        {
+            return faq.GetFAQs();
+        }
+
         private GroupedCategories ToGroupedCategoriesModel(Category parent, List<Category> subCategories)
         {
             return new GroupedCategories

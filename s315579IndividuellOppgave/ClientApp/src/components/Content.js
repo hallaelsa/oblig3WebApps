@@ -4,6 +4,8 @@ import { Panel } from 'react-bootstrap';
 export default class Content extends Component {
 
     render() {
+        console.log(this.props.faqs);
+
         return (
             <div>
                 <Panel>
