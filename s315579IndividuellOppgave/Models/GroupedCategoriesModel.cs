@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace s315579IndividuellOppgave.Models
 {
-    public class GroupedCategories
+    public class GroupedCategoriesModel
     {
-        public Category Parent { get; set; }
-        public List<Category> Categories { get; set; }
+        public CategoryModel Parent { get; set; }
+        public List<CategoryModel> Categories { get; set; }
     }
 }

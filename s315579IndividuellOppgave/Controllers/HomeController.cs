@@ -21,13 +21,13 @@ namespace s315579IndividuellOppgave.Controllers
         }
 
         [Route("categories")]
-        public List<GroupedCategories> GetCategories()
+        public List<GroupedCategoriesModel> GetCategories()
         {
             return faq.GetCategories();
         }
 
         [Route("faqs")]
-        public List<QA> GetFAQs()
+        public List<QaModel> GetFAQs()
         {
             return faq.GetFAQs();
         }

@@ -16,7 +16,7 @@ namespace s315579IndividuellOppgave.DAL
             this.dbService = dbService;
         }
 
-        public List<Models.Category> GetCategories()
+        public List<Models.CategoryModel> GetCategories()
         {
             var categories = dbService.Category
                 .Select(dbCategory => ToCategoryModel(dbCategory))
@@ -24,7 +24,7 @@ namespace s315579IndividuellOppgave.DAL
             return categories;
         }
 
-        public List<Models.QA> GetFAQs()
+        public List<Models.QaModel> GetFAQs()
         {
             var qa = dbService.QA
                 .Include(c => c.Category)
@@ -63,23 +63,22 @@ namespace s315579IndividuellOppgave.DAL
             }
         }
 
-        private Models.QA ToQaModel(DbModels.QA dbQA)
+        private Models.QaModel ToQaModel(DbModels.QA dbQA)
         {
-            return new Models.QA
+            return new Models.QaModel
             {
                 Id = dbQA.Id,
                 Question = dbQA.Question,
                 Answer = dbQA.Answer,
                 DownVotes = dbQA.DownVotes,
                 UpVotes = dbQA.UpVotes,
-                Email = dbQA.Email,
                 Category = ToCategoryModel(dbQA.Category)
             };
         }
 
-        private Models.Category ToCategoryModel(DbModels.Category dbCategory)
+        private Models.CategoryModel ToCategoryModel(DbModels.Category dbCategory)
         {
-            return new Models.Category
+            return new Models.CategoryModel
             {
                 Id = dbCategory.Id,
                 ParentId = dbCategory.ParentId,

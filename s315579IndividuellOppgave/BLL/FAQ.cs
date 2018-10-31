@@ -14,11 +14,11 @@ namespace s315579IndividuellOppgave.BLL
             this.faq = faq;
         }
 
-        public List<GroupedCategories> GetCategories()
+        public List<GroupedCategoriesModel> GetCategories()
         {
             var categories = faq.GetCategories();
             var parents = categories.Where(c => c.ParentId == null).ToList();
-            var groupedCategories = new List<GroupedCategories>();
+            var groupedCategories = new List<GroupedCategoriesModel>();
 
             foreach(var parent in parents)
             {
@@ -35,7 +35,7 @@ namespace s315579IndividuellOppgave.BLL
             return faq.UpVote(id);
         }
 
-        public List<QA> GetFAQs()
+        public List<QaModel> GetFAQs()
         {
             return faq.GetFAQs();
         }
@@ -45,9 +45,9 @@ namespace s315579IndividuellOppgave.BLL
             return faq.DownVote(id);
         }
 
-        private GroupedCategories ToGroupedCategoriesModel(Category parent, List<Category> subCategories)
+        private GroupedCategoriesModel ToGroupedCategoriesModel(CategoryModel parent, List<CategoryModel> subCategories)
         {
-            return new GroupedCategories
+            return new GroupedCategoriesModel
             {
                 Parent = parent,
                 Categories = subCategories

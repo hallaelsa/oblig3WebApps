@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace s315579IndividuellOppgave.Models
 {
-    public class Category
+    public class CategoryModel
     {
         public int Id { get; set; }
         public int? ParentId { get; set; }
         public string Title { get; set; }
-        public List<QA> QA { get; set; }
+        public List<QaModel> QA { get; set; }
     }
 }

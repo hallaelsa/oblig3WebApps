@@ -9,11 +9,13 @@ export class QuestionForm extends Component {
         super(props);
         this.state = {
             question: "",
-            email: ""
+            email: "",
+            categoryId: null
         };
 
         this.handleQuestionChange = this.handleQuestionChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.handleCategoryChange = this.handleCategoryChange.bind(this);
         this.getValidationStateQuestion = this.getValidationStateQuestion.bind(this);
         this.getValidationStateEmail = this.getValidationStateEmail.bind(this);
         this.sendForm = this.sendForm.bind(this);
@@ -25,7 +27,22 @@ export class QuestionForm extends Component {
         } else if (this.getValidationStateEmail() === "error" || this.getValidationStateQuestion() === "error")
             return;
 
-        this.props.handleClose();
+        const input = {};
+
+        fetch('api/home/sendquestion', {
+            method: 'POST',
+            body: JSON.stringify(input),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+            .then(response => {
+                console.log('Success:', JSON.stringify(response));
+                this.props.handleClose();
+            })
+            .catch(error => console.error('Error:', error));
+
+        
     }
 
     handleQuestionChange(e) {
@@ -34,6 +51,10 @@ export class QuestionForm extends Component {
 
     handleEmailChange(e) {
         this.setState({ email: e.target.value });
+    }
+
+    handleCategoryChange(e) {
+        this.setState({ categoryId: e.target.value });
     }
 
     getValidationStateQuestion() {
@@ -58,6 +79,9 @@ export class QuestionForm extends Component {
     }
 
     render() {
+        const categories = this.props.categories;
+        //console.log(categories);
+
         return (
             <div>
                 <Modal.Header closeButton>
@@ -91,6 +115,23 @@ export class QuestionForm extends Component {
                             />
                             <FormControl.Feedback />
                             <HelpBlock>All fields must be filled in.</HelpBlock>
+                        </FormGroup>
+                        <FormGroup controlId="formControlsSelect">
+                            <ControlLabel>Select a category</ControlLabel>
+                            <FormControl
+                                componentClass="select"
+                                placeholder="select"
+                                onChange={this.handleCategoryChange}
+                            >
+                                {
+                                    categories.map((category) => {
+                                       // console.log(category);
+                                        return <option key={category.title} value={category.id}>{category.title}</option>;
+                                    })
+                                }
+                                
+                                <option value="other">...</option>
+                            </FormControl>
                         </FormGroup>
                     </form>
                 </Modal.Body>

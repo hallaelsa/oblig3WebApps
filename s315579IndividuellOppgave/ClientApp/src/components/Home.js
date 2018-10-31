@@ -73,6 +73,11 @@ export class Home extends Component {
     render() {
         var content = this.state.isLoading ? this.loading() : this.content();
 
+        var groups = this.state.groupedCategories.map(c => c.categories);
+        console.log(groups);
+        var subCategories = groups.flat(2);
+        console.log(subCategories);
+
         return (
             <div>
                 <Header
@@ -82,7 +87,10 @@ export class Home extends Component {
                 {content}
                 
                 <Modal show={this.state.showModal} onHide={this.handleClose}>
-                    <QuestionForm handleClose={this.handleClose} />
+                    <QuestionForm
+                        handleClose={this.handleClose}
+                        categories={subCategories}
+                    />
                 </Modal>
             </div>
         );
