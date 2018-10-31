@@ -8,18 +8,17 @@ export class Header extends Component {
         this.state = { isHidden: true };
     }
 
-    render() {
-        return (
-            <PageHeader>
-                
-                <Button bsStyle="link" onClick={() => this.toggle()}><span className={this.state.isHidden ? "glyphicon glyphicon-menu-hamburger" : "glyphicon glyphicon-remove"}></span>  Menu</Button>
-                FAQ
-            </PageHeader>
-        );
-    }
-
     toggle() {
         this.setState({ isHidden: !this.state.isHidden });
         this.props.toggleMenu();
+    }
+
+    render() {
+        return (
+            <div className="header">
+                <Button bsStyle="link" className="header-menu-btn" onClick={() => this.toggle()}><span className={this.state.isHidden ? "glyphicon glyphicon-menu-hamburger" : "glyphicon glyphicon-remove"} />  Menu</Button>
+                <div className="header-title">FAQ</div>
+            </div>
+        );
     }
 }

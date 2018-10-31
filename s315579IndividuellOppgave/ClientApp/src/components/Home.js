@@ -36,6 +36,33 @@ export class Home extends Component {
         this.navigateTo = this.navigateTo.bind(this);
     }
 
+    loading() {
+        return (
+            <div className="loader"/>
+        );
+    }
+
+    content() {
+        return (
+            <div>
+                {this.state.showMenu && <Menu catGroup={this.state.groupedCategories} navigateTo={this.navigateTo} />}
+                <div className="content-container">
+                {this.state.groupedCategories.map((group) => {
+                    return <Content key={group.parent.title} faqs={this.state.faqs} group={group} />
+                })}
+                </div>
+            </div>
+        );
+    }
+
+    toggleMenu() {
+        this.setState({ showMenu: !this.state.showMenu });
+    }
+
+    navigateTo(id) {
+        console.log(id);
+    }
+
     render() {
         var content = this.state.isLoading ? this.loading() : this.content();
 
@@ -44,31 +71,8 @@ export class Home extends Component {
                 <Header
                     toggleMenu={this.toggleMenu} />
                 {content}
-                
+
             </div>
         );
-    }
-
-    loading() {
-        return (
-            <div className="loader"></div>
-        );
-    }
-
-    content() {
-        return (
-            <div>
-                this.state.showMenu && <Menu catGroup={this.state.groupedCategories} navigateTo={this.navigateTo} />
-                <Content faqs={this.state.faqs} />
-            </div>
-        );
-    }
-
-    toggleMenu() {
-        this.setState({ showMenu: !this.state.showMenu })
-    }
-
-    navigateTo(id) {
-        console.log(id);
     }
 }
