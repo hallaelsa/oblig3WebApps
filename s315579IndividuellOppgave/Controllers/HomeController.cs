@@ -9,7 +9,7 @@ using s315579IndividuellOppgave.Models;
 
 namespace s315579IndividuellOppgave.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/home")]
     [ApiController]
     public class HomeController : ControllerBase
     {
@@ -20,22 +20,23 @@ namespace s315579IndividuellOppgave.Controllers
             this.faq = faq;
         }
 
-        [HttpGet("[action]")]
-        public List<GroupedCategories> Categories()
+        [Route("categories")]
+        public List<GroupedCategories> GetCategories()
         {
             return faq.GetCategories();
         }
 
-        [HttpGet("[action]")]
-        public List<QA> FAQs()
+        [Route("faqs")]
+        public List<QA> GetFAQs()
         {
             return faq.GetFAQs();
         }
 
-        [HttpPost("[action]")]
-        public bool UpVotes(int id)
+        [Route("upvote/{id}")]
+        public bool PostUpVote(int id)
         {
             return true;
         }
+    
     }
 }

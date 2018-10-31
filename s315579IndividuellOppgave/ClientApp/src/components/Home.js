@@ -22,10 +22,10 @@ export class Home extends Component {
         //        this.setState({ forecasts: data, loading: false });
         //    });
 
-        fetch('api/Home/Categories')
+        fetch('api/home/categories')
             .then(response => response.json())
             .then(groups => {
-                fetch('api/Home/FAQs')
+                fetch('api/home/faqs')
                     .then(response => response.json())
                     .then(faqs => {
                         this.setState({ groupedCategories: groups, faqs: faqs, isLoading: false });

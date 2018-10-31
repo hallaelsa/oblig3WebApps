@@ -6,15 +6,11 @@ export default class Content extends Component {
     upVote(id) {
         console.log(id);
 
-        fetch('api/Home/UpVote',
-            {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(id)
-            });
+        fetch('api/home/upvote/'+id, {
+            method: 'POST', 
+        }).then(res => res.json())
+            .then(response => console.log('Success:', JSON.stringify(response)))
+            .catch(error => console.error('Error:', error));
     }
 
     downVote(id) {
