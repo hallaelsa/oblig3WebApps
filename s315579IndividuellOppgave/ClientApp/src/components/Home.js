@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Menu } from './Menu';
 import { Header } from './Header';
+import { QuestionForm } from './QuestionForm';
 import Content from './Content';
+import { Modal } from 'react-bootstrap';
 import './MyStyles.css';
 
 export class Home extends Component {
@@ -13,14 +15,9 @@ export class Home extends Component {
             showMenu: false,
             groupedCategories: [],
             faqs: [],
-            isLoading: true
+            isLoading: true,
+            showModal: false
         };
-
-        //fetch('api/SampleData/WeatherForecasts')
-        //    .then(response => response.json())
-        //    .then(data => {
-        //        this.setState({ forecasts: data, loading: false });
-        //    });
 
         fetch('api/home/categories')
             .then(response => response.json())
@@ -34,6 +31,8 @@ export class Home extends Component {
 
         this.toggleMenu = this.toggleMenu.bind(this);
         this.navigateTo = this.navigateTo.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.handleShow = this.handleShow.bind(this);
     }
 
     loading() {
@@ -63,15 +62,28 @@ export class Home extends Component {
         console.log(id);
     }
 
+    handleClose() {
+        this.setState({ showModal: false });
+    }
+
+    handleShow() {
+        this.setState({ showModal: true });
+    }
+
     render() {
         var content = this.state.isLoading ? this.loading() : this.content();
 
         return (
             <div>
                 <Header
-                    toggleMenu={this.toggleMenu} />
+                    toggleMenu={this.toggleMenu}
+                    showModal={this.handleShow}
+                />
                 {content}
-
+                
+                <Modal show={this.state.showModal} onHide={this.handleClose}>
+                    <QuestionForm handleClose={this.handleClose} />
+                </Modal>
             </div>
         );
     }
