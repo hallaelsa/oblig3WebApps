@@ -18,13 +18,20 @@ namespace s315579IndividuellOppgave.DAL
 
         public List<Models.Category> GetCategories()
         {
-            var categories = dbService.Category.Select(dbCategory => ToCategoryModel(dbCategory)).ToList();
+            var categories = dbService.Category
+                .Select(dbCategory => ToCategoryModel(dbCategory))
+                .ToList();
             return categories;
         }
 
         public List<Models.QA> GetFAQs()
         {
-            var qa = dbService.QA.Include(c => c.Category).Where(q => q.Answer != null).Select(a => ToQaModel(a)).ToList();
+            var qa = dbService.QA
+                .Include(c => c.Category)
+                .Where(q => q.Answer != null)
+                .OrderBy(q => q.Category.ParentId)
+                .Select(a => ToQaModel(a))
+                .ToList();
             return qa;
         }
 
