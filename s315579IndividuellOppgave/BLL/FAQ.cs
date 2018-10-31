@@ -40,6 +40,11 @@ namespace s315579IndividuellOppgave.BLL
             return faq.GetFAQs();
         }
 
+        internal bool DownVote(int id)
+        {
+            return faq.DownVote(id);
+        }
+
         private GroupedCategories ToGroupedCategoriesModel(Category parent, List<Category> subCategories)
         {
             return new GroupedCategories

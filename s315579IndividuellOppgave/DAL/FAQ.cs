@@ -48,6 +48,21 @@ namespace s315579IndividuellOppgave.DAL
             }
         }
 
+        internal bool DownVote(int id)
+        {
+            try
+            {
+                var qa = dbService.QA.FirstOrDefault(q => q.Id == id);
+                qa.DownVotes = qa.DownVotes + 1;
+                dbService.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
         private Models.QA ToQaModel(DbModels.QA dbQA)
         {
             return new Models.QA

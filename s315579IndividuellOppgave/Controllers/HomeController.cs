@@ -38,6 +38,13 @@ namespace s315579IndividuellOppgave.Controllers
             bool ok = faq.UpVote(id);
             return ok;
         }
-    
+
+        [Route("downvote/{id}")]
+        public bool PostDownVote(int id)
+        {
+            bool ok = faq.DownVote(id);
+            return ok;
+        }
+
     }
 }

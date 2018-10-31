@@ -12,8 +12,6 @@ export default class Content extends Component {
     }
 
     upVote(id) {
-        console.log(id);
-
         fetch('api/home/upvote/'+id, {
             method: 'POST', 
         }).then(res => res.json())
@@ -25,7 +23,15 @@ export default class Content extends Component {
     }
 
     downVote(id) {
-        console.log(id);
+
+        fetch('api/home/downvote/' + id, {
+            method: 'POST',
+        }).then(res => res.json())
+            .then(response => {
+                console.log('Success:', JSON.stringify(response));
+                this.setState({ upVoteId: 0, downVoteId: id });
+            })
+            .catch(error => console.error('Error:', error));
     }
 
     render() {
@@ -60,7 +66,7 @@ export default class Content extends Component {
                                                     </Button>
 
                                                     <Button bsStyle="link" onClick={() => this.downVote(faq.id)}>
-                                                        <span className="glyphicon glyphicon-thumbs-down vote">{faq.downVotes}</span>
+                                                        <span className="glyphicon glyphicon-thumbs-down vote">{this.state.downVoteId === faq.id ? ++faq.downVotes : faq.downVotes}</span>
                                                     </Button>
                                                 </div>
                                             </Panel.Body>
