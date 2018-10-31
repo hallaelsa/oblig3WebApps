@@ -10,7 +10,7 @@ export class QuestionForm extends Component {
         this.state = {
             question: "",
             email: "",
-            categoryId: null
+            categoryId: this.props.categories ? this.props.categories[0].id : null
         };
 
         this.handleQuestionChange = this.handleQuestionChange.bind(this);
@@ -26,21 +26,22 @@ export class QuestionForm extends Component {
             return;
         } else if (this.getValidationStateEmail() === "error" || this.getValidationStateQuestion() === "error")
             return;
+        
 
         const input = {};
 
-        fetch('api/home/sendquestion', {
-            method: 'POST',
-            body: JSON.stringify(input),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(res => res.json())
-            .then(response => {
-                console.log('Success:', JSON.stringify(response));
-                this.props.handleClose();
-            })
-            .catch(error => console.error('Error:', error));
+        //fetch('api/home/sendquestion', {
+        //    method: 'POST',
+        //    body: JSON.stringify(input),
+        //    headers: {
+        //        'Content-Type': 'application/json'
+        //    }
+        //}).then(res => res.json())
+        //    .then(response => {
+        //        console.log('Success:', JSON.stringify(response));
+        //        this.props.handleClose();
+        //    })
+        //    .catch(error => console.error('Error:', error));
 
         
     }
@@ -54,6 +55,7 @@ export class QuestionForm extends Component {
     }
 
     handleCategoryChange(e) {
+        console.log(e.target.value )
         this.setState({ categoryId: e.target.value });
     }
 
@@ -105,6 +107,7 @@ export class QuestionForm extends Component {
                         <FormGroup
                             validationState={this.getValidationStateEmail()}
                         >
+                            <ControlLabel>Provide an email we can respond to</ControlLabel>
                             <FormControl
                                 id="formControlsEmail"
                                 type="email"
@@ -114,7 +117,6 @@ export class QuestionForm extends Component {
                                 onChange={this.handleEmailChange}
                             />
                             <FormControl.Feedback />
-                            <HelpBlock>All fields must be filled in.</HelpBlock>
                         </FormGroup>
                         <FormGroup controlId="formControlsSelect">
                             <ControlLabel>Select a category</ControlLabel>
@@ -125,14 +127,14 @@ export class QuestionForm extends Component {
                             >
                                 {
                                     categories.map((category) => {
-                                       // console.log(category);
                                         return <option key={category.title} value={category.id}>{category.title}</option>;
                                     })
                                 }
                                 
-                                <option value="other">...</option>
+                                <option value="0">Other</option>
                             </FormControl>
                         </FormGroup>
+                        <HelpBlock>All fields must be filled in.</HelpBlock>
                     </form>
                 </Modal.Body>
                 <Modal.Footer>

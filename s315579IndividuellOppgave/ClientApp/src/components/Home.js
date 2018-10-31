@@ -71,12 +71,9 @@ export class Home extends Component {
     }
 
     render() {
-        var content = this.state.isLoading ? this.loading() : this.content();
-
-        var groups = this.state.groupedCategories.map(c => c.categories);
-        console.log(groups);
-        var subCategories = groups.flat(2);
-        console.log(subCategories);
+        const content = this.state.isLoading ? this.loading() : this.content();
+        const groups = this.state.groupedCategories.map(c => c.categories);
+        const subCategories = groups.flat(2);
 
         return (
             <div>
