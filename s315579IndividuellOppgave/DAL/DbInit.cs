@@ -67,7 +67,7 @@ namespace s315579IndividuellOppgave.DAL
             var newQA = new QA
             {
                 Question = "How do I download a movie?",
-                Answer = "After you have purchased a movie you will find it under you 'My Orders' tab. There will be a download button next to the movie. Click it and the movie will be downloaded",
+                Answer = "After you have purchased a movie you will find it under you 'My Orders' tab. There will be a download button next to the movie. Click it and the movie will be downloaded.",
                 UpVotes = 1,
                 DownVotes = 1,
                 Category = downloads,
@@ -77,7 +77,7 @@ namespace s315579IndividuellOppgave.DAL
             newQA = new QA
             {
                 Question = "I have problems downloading my movie",
-                Answer = "If you have problems downloading a movie please check that you are connected to the internet",
+                Answer = "If you have problems downloading a movie please check that you are connected to the internet.",
                 UpVotes = 5,
                 DownVotes = 0,
                 Category = downloads,
@@ -98,7 +98,7 @@ namespace s315579IndividuellOppgave.DAL
             newQA = new QA
             {
                 Question = "The movie I bought is not working. What do I do?",
-                Answer = "You can request a refund and will be able to buy the movie again.",
+                Answer = "You can request a refund and will be able to buy the movie again. Please send the request to admin@admin.com",
                 UpVotes = 5,
                 DownVotes = 0,
                 Category = refund,
@@ -119,7 +119,7 @@ namespace s315579IndividuellOppgave.DAL
             newQA = new QA
             {
                 Question = "When do you obtain the newest movies?",
-                Answer = "We do our best at obtaining new movies as soon as they are released to the marked. If we do not have a movie you wish we had you can request it.",
+                Answer = "We do our best at obtaining new movies as soon as they are released to the marked. If we do not have a movie you wish we had you can request it by sending an email to admin@admin.com.",
                 UpVotes = 8,
                 DownVotes = 0,
                 Category = newMovies,
@@ -149,6 +149,26 @@ namespace s315579IndividuellOppgave.DAL
 
             newQA = new QA
             {
+                Question = "I wanted to buy a movie but after logging in I can no longer find it.",
+                Answer = "Our movies are not sold if the user is too young according to the age restrictions of the movie. After creating an account only the movies available to your age group will be visible and possible to purchase.",
+                UpVotes = 2,
+                DownVotes = 11,
+                Category = payment,
+            };
+            dbContext.Add(newQA);
+
+            newQA = new QA
+            {
+                Question = "All the movies in my cart disappeared after I logged in! Where did they go?",
+                Answer = "Our movies are not sold if the user is too young according to the age restrictions of the movie. After creating an account only the movies available to your age group will be visible and possible to purchase. Any movies added to cart before login that are not available to your age group will be removed.",
+                UpVotes = 7,
+                DownVotes = 20,
+                Category = payment,
+            };
+            dbContext.Add(newQA);
+
+            newQA = new QA
+            {
                 Question = "I was charged double for one order. What do I do?",
                 Answer = "Please contact us at admin@admin.com and provide a document showing the transaction. We will fix the problem.",
                 UpVotes = 11,
@@ -161,7 +181,7 @@ namespace s315579IndividuellOppgave.DAL
             newQA = new QA
             {
                 Question = "I want to delete my accound. How do I do that?",
-                Answer = "Make a request to have you account deleted. Be aware that your order history will also be deleted and thus you cannot download any purchased movies again if you deside to become a member again",
+                Answer = "Make a request to have you account deleted.",
                 UpVotes = 8,
                 DownVotes = 0,
                 Category = deleteAccount,
@@ -171,7 +191,7 @@ namespace s315579IndividuellOppgave.DAL
             newQA = new QA
             {
                 Question = "I deleted my account but want to be a member again",
-                Answer = "Please register a new account. Be aware that your order history was deleted when deleting your account and thus you cannot download any previously purchased movies.",
+                Answer = "Please conatc us and refer to the email address you used when creating your account. We will reactivate it for you.",
                 UpVotes = 8,
                 DownVotes = 0,
                 Category = deleteAccount,
@@ -213,7 +233,7 @@ namespace s315579IndividuellOppgave.DAL
             newQA = new QA
             {
                 Question = "I cannot log in to this site!",
-                Answer = "Please make sure you have created a user with our service. If you have created an account with us but cannot log in, please check if you are using the correct password. If you are not able to reset your passord you account might have been suspended due to validations with our terms of service.",
+                Answer = "Please make sure you have created an account with our service. If you have created an account with us but cannot log in, please check if you are using the correct password.",
                 UpVotes = 8,
                 DownVotes = 0,
                 Category = login,
@@ -224,16 +244,6 @@ namespace s315579IndividuellOppgave.DAL
             {
                 Question = "I have problems creating a password.",
                 Answer = "Our service requires you to create a strong password. Please make sure you are using both capital and small letters as well as numbers when creating a password.",
-                UpVotes = 8,
-                DownVotes = 0,
-                Category = login,
-            };
-            dbContext.Add(newQA);
-
-            newQA = new QA
-            {
-                Question = "I have forgotten my password.",
-                Answer = "Please reset you password by contacting us at admin@admin.com.",
                 UpVotes = 8,
                 DownVotes = 0,
                 Category = login,
