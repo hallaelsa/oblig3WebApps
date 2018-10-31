@@ -54,12 +54,12 @@ export default class Content extends Component {
                                     <Panel key={faq.id}>
                                         <Panel.Heading>
                                             <Panel.Title toggle>
-                                                {faq.question}
+                                                Question: {faq.question}
                                             </Panel.Title>
                                         </Panel.Heading>
                                         <Panel.Collapse>
                                             <Panel.Body>
-                                                {faq.answer}
+                                                Answer: {faq.answer}
                                                 <div className="votes-container">
                                                     <Button bsStyle="link" onClick={() => this.upVote(faq.id)}>
                                                         <span className="glyphicon glyphicon-thumbs-up vote" >{this.state.upVoteId === faq.id ? ++faq.upVotes : faq.upVotes}</span>

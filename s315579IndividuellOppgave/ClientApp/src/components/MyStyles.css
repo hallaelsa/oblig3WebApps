@@ -7,8 +7,9 @@
 }
 
 .contents-wrapper {
-    width: 50%; 
+    width: 50%;
     margin: auto;
+    margin-top: 48px;
 }
 
 .header {
@@ -40,6 +41,7 @@
     justify-content: space-around;
     flex-wrap: wrap;
     border-bottom: 1px solid #c0c0c0;
+    padding-bottom: 16px;
 }
 
 .menu-group {
@@ -68,7 +70,13 @@
     width: 50px;
     height: 50px;
     animation: spin 2s linear infinite;
+    margin: auto;
 }
+
+/*.panel > .panel-heading {
+    background-image: none;
+    background-color: #f6f8f9;
+}*/
 
 @keyframes spin {
     0% {
