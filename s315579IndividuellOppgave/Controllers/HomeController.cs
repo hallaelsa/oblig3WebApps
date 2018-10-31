@@ -35,7 +35,8 @@ namespace s315579IndividuellOppgave.Controllers
         [Route("upvote/{id}")]
         public bool PostUpVote(int id)
         {
-            return true;
+            bool ok = faq.UpVote(id);
+            return ok;
         }
     
     }

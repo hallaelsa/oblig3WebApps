@@ -30,6 +30,11 @@ namespace s315579IndividuellOppgave.BLL
             return groupedCategories;
         }
 
+        internal bool UpVote(int id)
+        {
+            return faq.UpVote(id);
+        }
+
         public List<QA> GetFAQs()
         {
             return faq.GetFAQs();
