@@ -60,15 +60,14 @@ export class QuestionForm extends Component {
     }
 
     handleCategoryChange(e) {
-        console.log(e.target.value )
         this.setState({ categoryId: e.target.value });
     }
 
     getValidationStateQuestion() {
         const length = this.state.question.length;
 
-        if (length > 10) return 'success';
-        else if (length > 5) return 'warning';
+        if (length > 20) return 'success';
+        else if (length > 10) return 'warning';
         else if (length > 0) return 'error';
         return null;
     }
