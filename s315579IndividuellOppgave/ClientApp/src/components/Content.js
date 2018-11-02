@@ -7,7 +7,8 @@ export default class Content extends Component {
         super(props);
         this.state = {
             upVoteId: 0,
-            downVoteId: 0
+            downVoteId: 0,
+            expandId: 0
         };
     }
 
@@ -51,26 +52,29 @@ export default class Content extends Component {
 
                             {filteredQA.map((faq) => {
                                 return (
-                                    <Panel key={faq.id}>
+                                    <Panel key={faq.id} expanded={this.state.expandId === faq.id ? true : false} onToggle={() => { }}>
                                         <Panel.Heading>
-                                            <Panel.Title toggle>
-                                                Question: {faq.question}
+                                            <Panel.Title >
+                                                <div className="toggle-btn" onClick={() => this.setState({ expandId: this.state.expandId === faq.id ? 0 : faq.id })}>
+                                                    <span className={this.state.expandId === faq.id ? "glyphicon glyphicon-chevron-up" : "glyphicon glyphicon-chevron-down"} />
+                                                </div>
+                                                <div className="title">Question: {faq.question}</div>
                                             </Panel.Title>
                                         </Panel.Heading>
-                                        <Panel.Collapse>
-                                            <Panel.Body>
-                                                Answer: {faq.answer}
-                                                <div className="votes-container">
-                                                    <Button bsStyle="link" onClick={() => this.upVote(faq.id)}>
-                                                        <span className="glyphicon glyphicon-thumbs-up vote" >{this.state.upVoteId === faq.id ? ++faq.upVotes : faq.upVotes}</span>
-                                                    </Button>
+                                            <Panel.Collapse>
+                                                <Panel.Body>
+                                                    Answer: {faq.answer}
+                                                    <div className="votes-container">
+                                                        <Button bsStyle="link" onClick={() => this.upVote(faq.id)}>
+                                                            <span className="glyphicon glyphicon-thumbs-up vote" >{this.state.upVoteId === faq.id ? ++faq.upVotes : faq.upVotes}</span>
+                                                        </Button>
 
-                                                    <Button bsStyle="link" onClick={() => this.downVote(faq.id)}>
-                                                        <span className="glyphicon glyphicon-thumbs-down vote">{this.state.downVoteId === faq.id ? ++faq.downVotes : faq.downVotes}</span>
-                                                    </Button>
-                                                </div>
-                                            </Panel.Body>
-                                        </Panel.Collapse>
+                                                        <Button bsStyle="link" onClick={() => this.downVote(faq.id)}>
+                                                            <span className="glyphicon glyphicon-thumbs-down vote">{this.state.downVoteId === faq.id ? ++faq.downVotes : faq.downVotes}</span>
+                                                        </Button>
+                                                    </div>
+                                                </Panel.Body>
+                                            </Panel.Collapse>
                                     </Panel>
                             );
                             })}

@@ -150,6 +150,7 @@ export class QuestionForm extends Component {
     }
 
     getFeedback() {
+        console.log(this.state.success);
         const message = this.state.success ? "Your question has been sent." : "Something went wrong. Please try again.";
         const title = this.state.success ? "Thank you!" : "Error!";
 

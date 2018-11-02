@@ -73,10 +73,25 @@
     margin: auto;
 }
 
-/*.panel > .panel-heading {
+.panel > .panel-heading {
     background-image: none;
     background-color: #f6f8f9;
-}*/
+}
+
+.toggle-btn {
+    width: 50px;
+    margin: 0;
+    display: inline;
+    padding: 16px;
+    color: #337ab7;
+    cursor: pointer;
+}
+
+.title {
+    width: 80%;
+    margin: 0;
+    display: inline;
+}
 
 @keyframes spin {
     0% {
