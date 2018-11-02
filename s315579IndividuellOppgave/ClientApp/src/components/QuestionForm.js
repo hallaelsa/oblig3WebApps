@@ -150,15 +150,20 @@ export class QuestionForm extends Component {
     }
 
     getFeedback() {
-        const message = this.state.success ? "Thank you! Your question has been sent" : "ERROR! Something went wrong. Please try again";
+        const message = this.state.success ? "Your question has been sent." : "Something went wrong. Please try again.";
+        const title = this.state.success ? "Thank you!" : "Error!";
+
         setTimeout(() => {
             this.props.handleClose();
         }, 3000);
 
         return (
             <div>
+                <Modal.Header>
+                    <h3>{title}</h3>
+                </Modal.Header>
                 <Modal.Body>
-                   <h2> {message}</h2>
+                   <h4> {message}</h4>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={this.props.handleClose}>Close</Button>

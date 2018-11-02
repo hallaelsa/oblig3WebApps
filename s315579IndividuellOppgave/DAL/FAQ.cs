@@ -39,6 +39,7 @@ namespace s315579IndividuellOppgave.DAL
         {
             try
             {
+                // it's ok if category is null. Then it is "other" and does not yet exist.
                 var category = dbService.Category.FirstOrDefault(c => c.Id == model.CategoryId);
                 var question = new QA
                 {
