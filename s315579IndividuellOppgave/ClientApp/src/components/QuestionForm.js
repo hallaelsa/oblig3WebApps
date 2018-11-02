@@ -10,7 +10,8 @@ export class QuestionForm extends Component {
         this.state = {
             question: "",
             email: "",
-            categoryId: this.props.categories ? this.props.categories[0].id : null
+            categoryId: this.props.categories ? this.props.categories[0].id : null,
+            success: null
         };
 
         this.handleQuestionChange = this.handleQuestionChange.bind(this);
@@ -22,26 +23,30 @@ export class QuestionForm extends Component {
     }
 
     sendForm() {
-        if (this.state.email.length < 1 || this.state.question.length < 1) {
+        const question = this.state.question;
+        const email = this.state.email;
+        const categoryId = this.state.categoryId;
+
+        if (email.length < 1 || question.length < 1 || categoryId === null) {
             return;
         } else if (this.getValidationStateEmail() === "error" || this.getValidationStateQuestion() === "error")
             return;
         
 
-        const input = {};
+        const input = { Question: question, Email: email, CategoryId: categoryId };
 
-        //fetch('api/home/sendquestion', {
-        //    method: 'POST',
-        //    body: JSON.stringify(input),
-        //    headers: {
-        //        'Content-Type': 'application/json'
-        //    }
-        //}).then(res => res.json())
-        //    .then(response => {
-        //        console.log('Success:', JSON.stringify(response));
-        //        this.props.handleClose();
-        //    })
-        //    .catch(error => console.error('Error:', error));
+        fetch('api/home/sendquestion', {
+            method: 'POST',
+            body: JSON.stringify(input),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+            .then(response => {
+                console.log('Success:', JSON.stringify(response));
+                this.setState({ success: JSON.stringify(response) });
+            })
+            .catch(error => console.error('Error:', error));
 
         
     }
@@ -80,9 +85,8 @@ export class QuestionForm extends Component {
         return null;
     }
 
-    render() {
+    getContent() {
         const categories = this.props.categories;
-        //console.log(categories);
 
         return (
             <div>
@@ -130,7 +134,7 @@ export class QuestionForm extends Component {
                                         return <option key={category.title} value={category.id}>{category.title}</option>;
                                     })
                                 }
-                                
+
                                 <option value="0">Other</option>
                             </FormControl>
                         </FormGroup>
@@ -138,9 +142,37 @@ export class QuestionForm extends Component {
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={() =>this.sendForm()}>Send</Button>
+                    <Button onClick={() => this.sendForm()}>Send</Button>
                     <Button onClick={this.props.handleClose}>Close</Button>
                 </Modal.Footer>
+            </div>
+        );
+    }
+
+    getFeedback() {
+        const message = this.state.success ? "Thank you! Your question has been sent" : "ERROR! Something went wrong. Please try again";
+        setTimeout(() => {
+            this.props.handleClose();
+        }, 3000);
+
+        return (
+            <div>
+                <Modal.Body>
+                   <h2> {message}</h2>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={this.props.handleClose}>Close</Button>
+                </Modal.Footer>
+            </div>
+        );
+    }
+
+    render() {
+        const content = this.state.success !== null ? this.getFeedback() : this.getContent(); 
+
+        return (
+            <div>
+                {content}
             </div>
         );
     }

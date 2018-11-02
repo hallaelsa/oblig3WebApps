@@ -30,6 +30,11 @@ namespace s315579IndividuellOppgave.BLL
             return groupedCategories;
         }
 
+        internal bool SetQuestion(QuestionModel model)
+        {
+            return faq.SetQuestion(model);
+        }
+
         internal bool UpVote(int id)
         {
             return faq.UpVote(id);

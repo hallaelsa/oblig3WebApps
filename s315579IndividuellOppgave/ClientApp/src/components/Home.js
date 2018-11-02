@@ -25,6 +25,7 @@ export class Home extends Component {
                 fetch('api/home/faqs')
                     .then(response => response.json())
                     .then(faqs => {
+                        console.log(groups);
                         this.setState({ groupedCategories: groups, faqs: faqs, isLoading: false });
                     });
             });

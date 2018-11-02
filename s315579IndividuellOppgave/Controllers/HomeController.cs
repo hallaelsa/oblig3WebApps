@@ -26,6 +26,13 @@ namespace s315579IndividuellOppgave.Controllers
             return faq.GetCategories();
         }
 
+        [Route("sendquestion")]
+        public bool PostQuestion([FromBody] QuestionModel model)
+        {
+            bool ok = faq.SetQuestion(model);
+            return ok;
+        }
+
         [Route("faqs")]
         public List<QaModel> GetFAQs()
         {

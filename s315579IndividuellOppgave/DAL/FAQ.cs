@@ -35,6 +35,31 @@ namespace s315579IndividuellOppgave.DAL
             return qa;
         }
 
+        internal bool SetQuestion(QuestionModel model)
+        {
+            try
+            {
+                var category = dbService.Category.FirstOrDefault(c => c.Id == model.CategoryId);
+                var question = new QA
+                {
+                    Question = model.Question,
+                    Answer = null,
+                    UpVotes = 0,
+                    DownVotes = 0,
+                    Email = model.Email,
+                    Category = category
+                };
+
+                dbService.Add(question);
+                dbService.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
         internal bool UpVote(int id)
         {
             try {
