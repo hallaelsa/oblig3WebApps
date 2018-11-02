@@ -142,8 +142,8 @@ export class QuestionForm extends Component {
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={() => this.sendForm()}>Send</Button>
-                    <Button onClick={this.props.handleClose}>Close</Button>
+                    <Button bsStyle="primary" onClick={() => this.sendForm()}>Send</Button>
+                    <Button bsStyle="primary" onClick={this.props.handleClose}>Close</Button>
                 </Modal.Footer>
             </div>
         );
@@ -167,7 +167,7 @@ export class QuestionForm extends Component {
                    <h4> {message}</h4>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={this.props.handleClose}>Close</Button>
+                    <Button bsStyle="primary" onClick={this.props.handleClose}>Close</Button>
                 </Modal.Footer>
             </div>
         );
