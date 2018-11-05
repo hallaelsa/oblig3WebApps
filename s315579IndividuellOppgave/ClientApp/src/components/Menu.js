@@ -4,10 +4,6 @@ import './MyStyles.css';
 
 export class Menu extends Component {
     displayName = Menu.name
-    
-    categoryClick(id) {
-        this.props.navigateTo(id);
-    }
 
     render() {
         return (
@@ -15,10 +11,10 @@ export class Menu extends Component {
                 {this.props.catGroup.map((group, index) => {
                     return (
                         <div className="menu-group" key={index}>
-                            <Button href={"#"+group.parent.id} bsStyle="link" onClick={() => this.categoryClick(group.parent.id)}> <h2 key={group.parent.id}>{group.parent.title}</h2></Button>
+                            <Button href={"#"+group.parent.id} bsStyle="link" > <h2 key={group.parent.id}>{group.parent.title}</h2></Button>
 
                             {group.categories.map((category) => {
-                                return <Button href={"#"+category.id} bsStyle="link" key={category.id} onClick={() => this.categoryClick(category.id)}>{category.title}</Button>;
+                                return <Button href={"#"+category.id} bsStyle="link" key={category.id} >{category.title}</Button>;
                             })}
 
                         </div>

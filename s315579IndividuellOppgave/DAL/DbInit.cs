@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using s315579IndividuellOppgave.DAL.DbModels;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace s315579IndividuellOppgave.DAL
@@ -71,10 +72,10 @@ namespace s315579IndividuellOppgave.DAL
                 UpVotes = 1,
                 DownVotes = 1,
                 Email = "test@gmail.com",
-                Category = downloads,
+                Category = downloads
             };
             dbContext.Add(newQA);
-
+            
             newQA = new QA
             {
                 Question = "I have problems downloading my movie",
@@ -82,10 +83,10 @@ namespace s315579IndividuellOppgave.DAL
                 UpVotes = 5,
                 DownVotes = 0,
                 Email = "test@gmail.com",
-                Category = downloads,
+                Category = downloads
             };
             dbContext.Add(newQA);
-
+            
             newQA = new QA
             {
                 Question = "I downloaded the movie but I cannot find it",
@@ -93,7 +94,7 @@ namespace s315579IndividuellOppgave.DAL
                 UpVotes = 5,
                 DownVotes = 0,
                 Email = "test@gmail.com",
-                Category = downloads,
+                Category = downloads
             };
             dbContext.Add(newQA);
 
@@ -105,10 +106,10 @@ namespace s315579IndividuellOppgave.DAL
                 UpVotes = 5,
                 DownVotes = 0,
                 Email = "test@gmail.com",
-                Category = refund,
+                Category = refund
             };
             dbContext.Add(newQA);
-
+            
             newQA = new QA
             {
                 Question = "How do I ask for a refund?",
@@ -116,7 +117,7 @@ namespace s315579IndividuellOppgave.DAL
                 UpVotes = 2,
                 DownVotes = 1,
                 Email = "test@gmail.com",
-                Category = refund,
+                Category = refund
             };
             dbContext.Add(newQA);
 

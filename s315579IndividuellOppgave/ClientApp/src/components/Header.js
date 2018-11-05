@@ -1,11 +1,16 @@
 ﻿import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, FormGroup, FormControl, InputGroup } from 'react-bootstrap';
 
 export class Header extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { isHidden: true };
+        this.state = {
+            isHidden: true,
+            search: ""
+        };
+
+        this.handleChangeSearch = this.handleChangeSearch.bind(this);
     }
 
     toggle() {
@@ -13,10 +18,29 @@ export class Header extends Component {
         this.props.toggleMenu();
     }
 
+    handleChangeSearch(e) {
+        this.setState({ search: e.target.value });
+    }
+
     render() {
         return (
             <div className="header">
                 <Button bsStyle="link" className="header-menu-btn" onClick={() => this.toggle()}><span className={this.state.isHidden ? "glyphicon glyphicon-menu-hamburger" : "glyphicon glyphicon-remove"} />  Menu</Button>
+                <form className="search-form-wrapper">
+                    <FormGroup>
+                        <InputGroup>
+                            <FormControl type="text"
+                                value={this.props.reset ? "" : this.state.search}
+                                placeholder="Search"
+                                onChange={this.handleChangeSearch} />
+                            <InputGroup.Button>
+                                <Button bsStyle="primary"  onClick={() => this.props.resetSearch()}>x</Button>
+                                <Button bsStyle="primary"  onClick={() => this.props.search(this.state.search)}>Search</Button>
+                            </InputGroup.Button>
+                        </InputGroup>
+                    </FormGroup>
+                </form>
+
                 <div className="header-title">FAQ</div>
                 <Button bsStyle="link" className="header-menu-btn" bsSize="large" onClick={this.props.showModal}>
                     <span className="glyphicon glyphicon-pencil"/>

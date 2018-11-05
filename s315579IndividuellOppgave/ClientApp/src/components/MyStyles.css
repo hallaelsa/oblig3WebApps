@@ -32,7 +32,7 @@
 
 .header-title {
     margin: auto;
-    transform: translate(-75px, 0);
+    transform: translate(-197px, 0);
 }
 
 .menu-wrapper {
@@ -76,6 +76,12 @@
 .panel > .panel-heading {
     background-image: none;
     background-color: #f6f8f9;
+}
+
+.search-form-wrapper {
+    display: flex;
+    align-items: flex-end;
+    margin-left: 36px;
 }
 
 .toggle-btn {

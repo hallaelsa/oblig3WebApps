@@ -15,8 +15,10 @@ export class Home extends Component {
             showMenu: false,
             groupedCategories: [],
             faqs: [],
+            allFaqs: [],
             isLoading: true,
-            showModal: false
+            showModal: false,
+            reset: false
         };
 
         fetch('api/home/categories')
@@ -25,14 +27,15 @@ export class Home extends Component {
                 fetch('api/home/faqs')
                     .then(response => response.json())
                     .then(faqs => {
-                        this.setState({ groupedCategories: groups, faqs: faqs, isLoading: false });
+                        this.setState({ groupedCategories: groups, faqs: faqs, allFaqs: faqs, isLoading: false });
                     });
             });
 
         this.toggleMenu = this.toggleMenu.bind(this);
-        this.navigateTo = this.navigateTo.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.handleShow = this.handleShow.bind(this);
+        this.resetSearch = this.resetSearch.bind(this);
+        this.search = this.search.bind(this);
     }
 
     loading() {
@@ -44,10 +47,12 @@ export class Home extends Component {
     content() {
         return (
             <div>
-                {this.state.showMenu && <Menu catGroup={this.state.groupedCategories} navigateTo={this.navigateTo} />}
+                {this.state.showMenu &&
+                    <Menu catGroup={this.state.groupedCategories} />
+                }
                 <div className="content-container">
                 {this.state.groupedCategories.map((group) => {
-                    return <Content key={group.parent.title} faqs={this.state.faqs} group={group} />
+                        return <Content key={group.parent.title} faqs={this.state.faqs} group={group} />;
                 })}
                 </div>
             </div>
@@ -58,8 +63,42 @@ export class Home extends Component {
         this.setState({ showMenu: !this.state.showMenu });
     }
 
-    navigateTo(id) {
-        console.log(id);
+    search(text) {
+        if (text.length < 1)
+            return;
+
+        let toLower = text.toLowerCase();
+        let stringArray = toLower.split(" ");
+        let searchableWords = stringArray.filter(word => word.length > 3);
+        searchableWords.sort(function (a, b) {
+            return b.length - a.length;
+        });
+        let all = this.state.allFaqs;
+        let result = [];
+        let counter = 0;
+
+        all.forEach((faq, index) => {
+
+            searchableWords.every((word) => {
+                //console.log(word);
+                if (faq.question.includes(word)) {
+                    //console.log(faq.question);
+                    result[counter++] = this.state.allFaqs[index];
+                    return;
+                }
+            });
+           
+        });
+
+        if (result.length > 0)
+            this.setState({ faqs: result, reset : false });
+
+        
+    }
+
+    resetSearch() {
+        console.log("reset!");
+        this.setState({ faqs: this.state.allFaqs, reset : true });
     }
 
     handleClose() {
@@ -80,6 +119,9 @@ export class Home extends Component {
                 <Header
                     toggleMenu={this.toggleMenu}
                     showModal={this.handleShow}
+                    search={this.search}
+                    resetSearch={this.resetSearch}
+                    reset={this.state.reset}
                 />
                 {content}
                 
