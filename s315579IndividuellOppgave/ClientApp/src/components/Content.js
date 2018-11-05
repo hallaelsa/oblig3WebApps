@@ -45,6 +45,8 @@ export default class Content extends Component {
 
                 {group.categories.map((category) => {
                     const filteredQA = faqs.filter((aq) => aq.category.id === category.id);
+                    if (filteredQA.length < 1)
+                        return;
                     
                     return (
                         <div key={category.id + category.title}>
