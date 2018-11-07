@@ -15,7 +15,6 @@ export default class Content extends Component {
 
     upVote(id) {
         if (this.state.voted.includes(id)) {
-            console.log("RETURN");
             this.setState({ upVoteId: 0 });
             return;
         }
@@ -34,8 +33,7 @@ export default class Content extends Component {
     downVote(id) {
 
         if (this.state.voted.includes(id)) {
-            this.setState({ upVoteId: 0 });
-            console.log("RETURN");
+            this.setState({ downVoteId: 0 });
             return;
         }
 

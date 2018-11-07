@@ -106,6 +106,7 @@ export class QuestionForm extends Component {
                                 placeholder="Enter your question here"
                                 onChange={this.handleQuestionChange}
                             />
+                            <HelpBlock>You must fill in a question.</HelpBlock>
                             <FormControl.Feedback />
                         </FormGroup>
                         <FormGroup
@@ -120,6 +121,7 @@ export class QuestionForm extends Component {
                                 value={this.state.email}
                                 onChange={this.handleEmailChange}
                             />
+                            <HelpBlock>You must provide a valid email address.</HelpBlock>
                             <FormControl.Feedback />
                         </FormGroup>
                         <FormGroup controlId="formControlsSelect">
@@ -138,7 +140,6 @@ export class QuestionForm extends Component {
                                 <option value="0">Other</option>
                             </FormControl>
                         </FormGroup>
-                        <HelpBlock>All fields must be filled in.</HelpBlock>
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
