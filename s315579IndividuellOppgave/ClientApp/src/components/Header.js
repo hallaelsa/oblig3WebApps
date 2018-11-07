@@ -7,7 +7,6 @@ export class Header extends Component {
         super(props);
         this.state = {
             isHidden: true,
-            search: ""
         };
         
         this.reset = this.reset.bind(this);
@@ -19,7 +18,6 @@ export class Header extends Component {
     }
 
     reset() {
-        this.setState({search: ""});
         this.props.resetSearch();
     }
 
@@ -42,7 +40,7 @@ export class Header extends Component {
                     </FormGroup>
                 </form>
 
-                <div className="header-title">FAQ</div>
+                <div className="header-title">MetFilms FAQ</div>
                 <Button bsStyle="link" className="header-menu-btn" bsSize="large" onClick={this.props.showModal}>
                     <span className="glyphicon glyphicon-pencil"/>
                 </Button>
