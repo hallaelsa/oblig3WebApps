@@ -35,6 +35,11 @@
     transform: translate(-197px, 0);
 }
 
+.center {
+    margin: auto;
+    text-align: center;
+}
+
 .menu-wrapper {
     display: flex;
     flex-direction: row;

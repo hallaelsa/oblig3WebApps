@@ -11,6 +11,7 @@ export class Header extends Component {
         };
 
         this.handleChangeSearch = this.handleChangeSearch.bind(this);
+        this.reset = this.reset.bind(this);
     }
 
     toggle() {
@@ -22,6 +23,11 @@ export class Header extends Component {
         this.setState({ search: e.target.value });
     }
 
+    reset() {
+        this.setState({search: ""});
+        this.props.resetSearch();
+    }
+
     render() {
         return (
             <div className="header">
@@ -30,11 +36,11 @@ export class Header extends Component {
                     <FormGroup>
                         <InputGroup>
                             <FormControl type="text"
-                                value={this.props.reset ? "" : this.state.search}
+                                value={this.state.search}
                                 placeholder="Search"
                                 onChange={this.handleChangeSearch} />
                             <InputGroup.Button>
-                                <Button bsStyle="primary"  onClick={() => this.props.resetSearch()}>x</Button>
+                                <Button bsStyle="primary"  onClick={() => this.reset()}>x</Button>
                                 <Button bsStyle="primary"  onClick={() => this.props.search(this.state.search)}>Search</Button>
                             </InputGroup.Button>
                         </InputGroup>

@@ -18,7 +18,8 @@ export class Home extends Component {
             allFaqs: [],
             isLoading: true,
             showModal: false,
-            reset: false
+            reset: false,
+            noResult: false
         };
 
         fetch('api/home/categories')
@@ -59,8 +60,24 @@ export class Home extends Component {
         );
     }
 
+    noContent() {
+        return (
+            <div>
+                {this.state.showMenu &&
+                    <Menu catGroup={this.state.groupedCategories} />
+                }
+                <div className="content-container">
+                    <div className="contents-wrapper">
+                        <h3 className="center">The search game no match.</h3>
+                    </div>
+                </div>
+            </div>
+        );
+
+    }
+
     toggleMenu() {
-        this.setState({ showMenu: !this.state.showMenu });
+        this.setState({ showMenu: !this.state.showMenu, faqs: this.state.allFaqs, reset: true, noResult: false });
     }
 
     search(text) {
@@ -90,15 +107,18 @@ export class Home extends Component {
            
         });
 
-        if (result.length > 0)
-            this.setState({ faqs: result, reset : false });
+        if (result.length > 0) {
+            this.setState({ faqs: result, reset: false });
+        } else {
+            this.setState({ noResult: true, reset: false});
+        }
+            
 
         
     }
 
     resetSearch() {
-        console.log("reset!");
-        this.setState({ faqs: this.state.allFaqs, reset : true });
+        this.setState({ faqs: this.state.allFaqs, reset: true, noResult: false });
     }
 
     handleClose() {
@@ -110,7 +130,7 @@ export class Home extends Component {
     }
 
     render() {
-        const content = this.state.isLoading ? this.loading() : this.content();
+        const content = this.state.isLoading ? this.loading() : this.state.noResult ? this.noContent() : this.content();
         const groups = this.state.groupedCategories.map(c => c.categories);
         const subCategories = groups.flat(2);
 

@@ -29,7 +29,15 @@ namespace s315579IndividuellOppgave.Controllers
         [Route("sendquestion")]
         public bool PostQuestion([FromBody] QuestionModel model)
         {
-            bool ok = faq.SetQuestion(model);
+            bool ok;
+            if(!ModelState.IsValid)
+            {
+                ok = false;
+            } else
+            {
+                ok = faq.SetQuestion(model);
+            }
+            
             return ok;
         }
 

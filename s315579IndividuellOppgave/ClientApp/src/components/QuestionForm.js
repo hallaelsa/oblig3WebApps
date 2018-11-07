@@ -66,6 +66,7 @@ export class QuestionForm extends Component {
     getValidationStateQuestion() {
         const length = this.state.question.length;
 
+
         if (length > 20) return 'success';
         else if (length > 10) return 'warning';
         else if (length > 0) return 'error';
