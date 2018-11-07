@@ -19,7 +19,8 @@ export class Home extends Component {
             isLoading: true,
             showModal: false,
             reset: false,
-            noResult: false
+            noResult: false,
+            searchText: ""
         };
 
         fetch('api/home/categories')
@@ -37,12 +38,17 @@ export class Home extends Component {
         this.handleShow = this.handleShow.bind(this);
         this.resetSearch = this.resetSearch.bind(this);
         this.search = this.search.bind(this);
+        this.handleChangeSearch = this.handleChangeSearch.bind(this);
     }
 
     loading() {
         return (
             <div className="loader"/>
         );
+    }
+
+    handleChangeSearch(e) {
+        this.setState({ searchText: e.target.value });
     }
 
     content() {
@@ -80,7 +86,8 @@ export class Home extends Component {
         this.setState({ showMenu: !this.state.showMenu, faqs: this.state.allFaqs, reset: true, noResult: false });
     }
 
-    search(text) {
+    search() {
+        const text = this.state.searchText;
         if (text.length < 1)
             return;
 
@@ -108,9 +115,9 @@ export class Home extends Component {
         });
 
         if (result.length > 0) {
-            this.setState({ faqs: result, reset: false });
+            this.setState({ searchText: text, faqs: result, reset: false });
         } else {
-            this.setState({ noResult: true, reset: false});
+            this.setState({ searchText: "", noResult: true, reset: false});
         }
             
 
@@ -140,7 +147,9 @@ export class Home extends Component {
                     toggleMenu={this.toggleMenu}
                     showModal={this.handleShow}
                     search={this.search}
+                    searchText={this.state.searchText}
                     resetSearch={this.resetSearch}
+                    handleChangeSearch={this.handleChangeSearch}
                     reset={this.state.reset}
                 />
                 {content}

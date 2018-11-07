@@ -9,18 +9,13 @@ export class Header extends Component {
             isHidden: true,
             search: ""
         };
-
-        this.handleChangeSearch = this.handleChangeSearch.bind(this);
+        
         this.reset = this.reset.bind(this);
     }
 
     toggle() {
         this.setState({ isHidden: !this.state.isHidden });
         this.props.toggleMenu();
-    }
-
-    handleChangeSearch(e) {
-        this.setState({ search: e.target.value });
     }
 
     reset() {
@@ -36,12 +31,12 @@ export class Header extends Component {
                     <FormGroup>
                         <InputGroup>
                             <FormControl type="text"
-                                value={this.state.search}
+                                value={this.props.searchText}
                                 placeholder="Search"
-                                onChange={this.handleChangeSearch} />
+                                onChange={this.props.handleChangeSearch} />
                             <InputGroup.Button>
                                 <Button bsStyle="primary"  onClick={() => this.reset()}>x</Button>
-                                <Button bsStyle="primary"  onClick={() => this.props.search(this.state.search)}>Search</Button>
+                                <Button bsStyle="primary"  onClick={() => this.props.search()}>Search</Button>
                             </InputGroup.Button>
                         </InputGroup>
                     </FormGroup>
