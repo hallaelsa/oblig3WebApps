@@ -8,29 +8,44 @@ export default class Content extends Component {
         this.state = {
             upVoteId: 0,
             downVoteId: 0,
-            expandId: 0
+            expandId: 0,
+            voted: []
         };
     }
 
     upVote(id) {
+        if (this.state.voted.includes(id)) {
+            console.log("RETURN");
+            this.setState({ upVoteId: 0 });
+            return;
+        }
+
         fetch('api/home/upvote/'+id, {
             method: 'POST', 
         }).then(res => res.json())
             .then(response => {
                 console.log('Success:', JSON.stringify(response));
-                this.setState({ upVoteId: id, downVoteId: 0});
+                let voted = [ ...this.state.voted, id ];
+                this.setState({ upVoteId: id, downVoteId: 0, voted: voted});
             })
             .catch(error => console.error('Error:', error));
     }
 
     downVote(id) {
 
+        if (this.state.voted.includes(id)) {
+            this.setState({ upVoteId: 0 });
+            console.log("RETURN");
+            return;
+        }
+
         fetch('api/home/downvote/' + id, {
             method: 'POST',
         }).then(res => res.json())
             .then(response => {
                 console.log('Success:', JSON.stringify(response));
-                this.setState({ upVoteId: 0, downVoteId: id });
+                let voted = [...this.state.voted, id];
+                this.setState({ upVoteId: 0, downVoteId: id, voted: voted });
             })
             .catch(error => console.error('Error:', error));
     }
