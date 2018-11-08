@@ -14,8 +14,9 @@ export default class Content extends Component {
     }
 
     upVote(id) {
+        
         if (this.state.voted.includes(id)) {
-            this.setState({ upVoteId: 0 });
+            this.setState({ upVoteId: 0, downVoteId: 0  });
             return;
         }
 
@@ -24,7 +25,7 @@ export default class Content extends Component {
         }).then(res => res.json())
             .then(response => {
                 console.log('Success:', JSON.stringify(response));
-                let voted = [ ...this.state.voted, id ];
+                let voted = [...this.state.voted, id];
                 this.setState({ upVoteId: id, downVoteId: 0, voted: voted});
             })
             .catch(error => console.error('Error:', error));
@@ -33,7 +34,7 @@ export default class Content extends Component {
     downVote(id) {
 
         if (this.state.voted.includes(id)) {
-            this.setState({ downVoteId: 0 });
+            this.setState({ upVoteId: 0, downVoteId: 0 });
             return;
         }
 
