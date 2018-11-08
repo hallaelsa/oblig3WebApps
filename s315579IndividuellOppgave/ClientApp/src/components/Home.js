@@ -74,7 +74,7 @@ export class Home extends Component {
                 }
                 <div className="content-container">
                     <div className="contents-wrapper">
-                        <h3 className="center">The search game no match.</h3>
+                        <h3 className="center">The search gave no match.</h3>
                     </div>
                 </div>
             </div>
